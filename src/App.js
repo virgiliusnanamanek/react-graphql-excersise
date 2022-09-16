@@ -1,6 +1,7 @@
 import github from "./db";
 import {  useEffect, useState, useCallback } from "react";
 import query from "./Query";
+import Repolist from "./Repolist";
 
 function App() {
 
@@ -15,10 +16,11 @@ function App() {
     });
     const data = await res.json();
     const viewer = data.data.viewer;
+    const repos = data.data.search.nodes;
     setUserName(viewer.name);
-    setRepos(viewer.repositories.nodes);
+    setRepos(repos);
     console.log(viewer);
-    console.log(viewer.repositories.nodes);
+    console.log(repos);
   }, []);
 
   useEffect(() => {
@@ -32,16 +34,7 @@ function App() {
       <div className="row">
         {
           repos.map(repo => (
-            <div className="col-md-4" key={repo.id}>
-              <div className="card mt-4">
-                <div className="card-body">
-                  <h3 className="text-primary">{repo.name}</h3>
-                  <p>
-                    <a href={repo.url} target="_blank" rel="noreferrer">View Repo</a>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Repolist repo={repo} key={repo.id} />
           ))
         }
       </div>
