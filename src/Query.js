@@ -3,10 +3,12 @@ const githubQuery = {
     {
       viewer {
         name
-        repositories(last: 10) {
-          nodes {
+      }
+      search(query: "user:virgiliusnanamanek", type: REPOSITORY, last: 10){
+        nodes{
+          ... on Repository{
             name
-            id
+            id 
             url
           }
         }
