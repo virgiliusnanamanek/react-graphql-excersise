@@ -25,12 +25,8 @@ Finally, you can run the client:
 ```bash
 
 npm run client
-
-```bash
-
-npm run client
-
-```
+    
+    ```
 
 ## How to use
 
